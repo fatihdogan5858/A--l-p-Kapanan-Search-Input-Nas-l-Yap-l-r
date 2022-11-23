@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Poppins:wght@300;400;700&display=swap');
+*{
+    box-sizing: border-box;
+}
+body {
+font-family: 'Inter', sans-serif;
+background-color: #333;/*YAZI ARKAPLAN RENGİ*/
+color: #222;
+margin:0; /*KÖŞE BOŞLUKLARI KALKAR*/
+overflow-x: hidden; /*SCROL BAR ALT SAĞ OYNATMA ÇUBUĞU KALKMASI İÇİN X YUKARI AŞAĞI OLAN*/
+}
+
+.container {
+    background-color: #fafafa; /*containerlerin arka plan rengi beyaz*/
+    transform-origin: top left; /*sabit kalacağı nokta topleft sabit geri kalacağı kısım hareketli olduğu için top left seçiliyor*/
+    transition: transform 0.5s Linear; /*bu işlem gerçekleştiğinde animasyonlu olsun 0.5 saniyeden linear: aynı hızda gerçekleşsin */
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+}
+.container.show-nav{ /*20 derece oynayacak kısım*/
+transform: rotate(-20deg);
+/*transform notasyonu 20 derece*//*eksi saat yönünün tersi olması için kondu*/
+}
+.circle-container{ /*sol üst köşeye sabitlendi*/
+position: fixed; /*   sabitledi*/
+top: -100px;
+left: -100px; 
+}
+.circle{
+
+    background-color: #ff7979;/*butonların arkası kırmızı oldu*/
+    height: 200px;
+    width: 200px;/*buton arkası genişliği rengi küçüldü*/
+    border-radius: 50%;/*köşeli yuvarlak oldu*/
+    position: relative;/*yuvarlak oldu*/
+    transition: transform 0.5s linear;
+}
+.circle button{
+    position: absolute; /* kapatma butonu kayboldu(diğer buton ile üst üste gelmiş)*/
+    top: 50%;
+    left: 50%; /*3treli buton çemberin ortasına geldi*/
+    height: 100px; /*diktortgen oldu*/
+    background-color: transparent;
+    color: #fff; /*buton içindekiler beyazlaştı*/
+    border: none;
+    font-size: 26px;/*btn içindeki çizgi buyudu*/
+}
+.circle button:focus{/*focus olduğu zaman gerçekleşecek outline yok etmek için*/
+outline: none;
+}
+.circle button#open{
+left: 60%;/*x butonu sola geldi*/
+}
+.circle button#close{
+top: 60½;
+transform: rotate(90deg);/*animasyon bir şekilde kaybolmasını istediğimiz için yan kısma alıyoruz*/
+transform-origin: top left;/*neye göre yan kısma alacağımız lefte göre*/
+}
+.container.show-nav.circle{
+    transition: rotate(-70deg);
+}
+.content{
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.content h1{
+margin: 0;
+}
+
+.content small{/*ozan tekin yazısı*/
+    color: #555;
+    font-style: italic;
+}
+
+.content p{ /*lorem yazıları*/
+    color:#333;
+line-height: 1.5;/*satır yuksekliği*/
+}
+
+.content img{ /*resim*/
+    max-width: 100%;
+}
+
+nav{
+    position: fixed;
+    bottom: 25%;
+    left:0;
+    z-index: 100;
+}
+nav ul {
+
+    list-style:none;
+    padding-left: 30px;
+}
+
+nav ul li{ /*hareket ediyor*/
+text-transform: uppercase;
+    color:white;
+margin: 40px 0;
+transform: translateX(-100%);
+transition : transform 0.4s ease-in; 
+}
+
+nav ul li + li {/*son iki li ye ulaşmak için*/
+margin-left: 15px;
+transform: translateX(-150%);
+}
+
+nav ul li + li + li{
+margin:30px;
+transform: translatex(-200%);
+}
+nav ul li + i{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.container.show-nav + nav li{ /* show-nav kısmından  nav li ye ulaşıyoruz*/
+transform: translateX(0);
+transition-delay: 0.3s;/*kaç gecikme süresi*/
+
+}
